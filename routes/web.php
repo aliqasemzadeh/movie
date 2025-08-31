@@ -17,6 +17,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/administrator/setting-management/option/index', App\Livewire\Administrator\SettingManagement\Option\Index::class)->name('administrator.setting-management.option.index');
     Route::get('/administrator/setting-management/function/index', App\Livewire\Administrator\SettingManagement\Function\Index::class)->name('administrator.setting-management.function.index');
+
+    Route::get('/administrator/video-management/movie/index', App\Livewire\Administrator\ViedoManagement\Movie\Index::class)->name('administrator.video-management.movie.index');
 });
 
 require_once __DIR__.'/auth.php';
