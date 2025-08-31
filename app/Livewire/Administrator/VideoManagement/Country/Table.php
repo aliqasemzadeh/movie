@@ -82,7 +82,7 @@ final class Table extends PowerGridComponent
         ];
     }
 
-    #[On('administrator.video-management.country.table:delete-user')]
+    #[On('administrator.video-management.country.table:delete-country')]
     public function deleteCountry(int $countryId): void
     {
         if ($country = Country::find($countryId)) {
