@@ -171,6 +171,63 @@
                     <button
                         type="button"
                         class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                        aria-controls="dropdown-video-management"
+                        data-collapse-toggle="dropdown-video-management"
+                    >
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M7 3v18"/><path d="M3 7.5h4"/><path d="M3 12h18"/><path d="M3 16.5h4"/><path d="M17 3v18"/><path d="M17 7.5h4"/><path d="M17 16.5h4"/></svg>
+
+                        <span class="flex-1 ml-3 text-left whitespace-nowrap"
+                        >{{ __('quickpanel.video_management') }}</span
+                        >
+                        <svg
+                            aria-hidden="true"
+                            class="w-6 h-6"
+                            fill="currentColor"
+                            viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg"
+                        >
+                            <path
+                                fill-rule="evenodd"
+                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                clip-rule="evenodd"
+                            ></path>
+                        </svg>
+                    </button>
+                    <ul id="dropdown-video-management" class="py-2 space-y-2 {{ request()->routeIs('administrator.video-management.*') ? '' : ' hidden'  }}">
+                        <li>
+                            <a
+                                href="{{ route('administrator.video-management.movie.index') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.video-management.movie.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
+                            >{{ __('quickpanel.movies') }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route('administrator.video-management.artist.index') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.video-management.artist.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
+                            >{{ __('quickpanel.artists') }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route('administrator.video-management.genre.index') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.video-management.genre.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
+                            >{{ __('quickpanel.genres') }}</a
+                            >
+                        </li>
+                        <li>
+                            <a
+                                href="{{ route('administrator.video-management.country.index') }}"
+                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.video-management.country.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
+                            >{{ __('quickpanel.countries') }}</a
+                            >
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <button
+                        type="button"
+                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                         aria-controls="dropdown-setting-management"
                         data-collapse-toggle="dropdown-setting-management"
                     >
@@ -208,47 +265,6 @@
                                 href="{{ route('administrator.setting-management.function.index') }}"
                                 class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.setting-management.function.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
                             >{{ __('quickpanel.functions') }}</a
-                            >
-                        </li>
-                    </ul>
-                </li>
-
-                <li>
-                    <button
-                        type="button"
-                        class="flex items-center p-2 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
-                        aria-controls="dropdown-video-management"
-                        data-collapse-toggle="dropdown-video-management"
-                    >
-                        <svg class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 group-hover:text-gray-900 dark:text-gray-400 dark:group-hover:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                           <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M20 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6h-2m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4m16 6H10m0 0a2 2 0 1 0-4 0m4 0a2 2 0 1 1-4 0m0 0H4"/>
-                        </svg>
-
-
-
-                        <span class="flex-1 ml-3 text-left whitespace-nowrap"
-                        >{{ __('quickpanel.video_management') }}</span
-                        >
-                        <svg
-                            aria-hidden="true"
-                            class="w-6 h-6"
-                            fill="currentColor"
-                            viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg"
-                        >
-                            <path
-                                fill-rule="evenodd"
-                                d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-                                clip-rule="evenodd"
-                            ></path>
-                        </svg>
-                    </button>
-                    <ul id="dropdown-video-management" class="py-2 space-y-2 {{ request()->routeIs('administrator.video-management.*') ? '' : ' hidden'  }}">
-                        <li>
-                            <a
-                                href="{{ route('administrator.video-management.movie.index') }}"
-                                class="flex items-center p-2 pl-11 w-full text-base font-medium text-gray-900 rounded-lg transition duration-75 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700 {{ request()->routeIs('administrator.setting-management.option.*') ? ' bg-gray-100 dark:bg-gray-700' : ''  }}"
-                            >{{ __('quickpanel.movies') }}</a
                             >
                         </li>
                     </ul>

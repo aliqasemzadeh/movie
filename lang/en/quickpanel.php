@@ -155,6 +155,9 @@ return [
     'admin_panel' => 'Admin Panel',
     'video_management' => 'Video Management',
     'movies' => 'Movies',
+    'artists' => 'Artists',
+    'genres' => 'Genres',
+    'countries' => 'Countries',
 
     // General
     'added' => 'Added',
