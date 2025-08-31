@@ -17,14 +17,15 @@ return new class extends Migration
             $table->string('slug')->unique()->index();
             $table->text('description')->nullable();
             $table->string('image');
+            $table->string('cover');
             $table->string('IMDB')->nullable();
             $table->string('IMDB_link')->nullable();
             $table->string('trailer')->nullable();
             $table->string('rank')->default(0);
             $table->string('year')->default(0);
             $table->bigInteger('duration')->default(0);
-            $table->bigInteger('director_artist_id');
-            $table->bigInteger('country_id');
+            $table->foreignId('director_artist_id')->constrained('artists');
+            $table->foreignId('country_id')->constrained('countries');
             $table->timestamps();
             $table->softDeletes();
         });
