@@ -18,7 +18,10 @@ Route::middleware('auth')->group(function () {
     Route::get('/administrator/setting-management/option/index', App\Livewire\Administrator\SettingManagement\Option\Index::class)->name('administrator.setting-management.option.index');
     Route::get('/administrator/setting-management/function/index', App\Livewire\Administrator\SettingManagement\Function\Index::class)->name('administrator.setting-management.function.index');
 
-    Route::get('/administrator/video-management/movie/index', App\Livewire\Administrator\ViedoManagement\Movie\Index::class)->name('administrator.video-management.movie.index');
+    Route::get('/administrator/video-management/movie/index',  App\Livewire\Administrator\VideoManagement\Movie\Index::class)->name('administrator.video-management.movie.index');
+    Route::get('/administrator/video-management/artist/index',  App\Livewire\Administrator\VideoManagement\Artist\Index::class)->name('administrator.video-management.artist.index');
+    Route::get('/administrator/video-management/genre/index',  App\Livewire\Administrator\VideoManagement\Genre\Index::class)->name('administrator.video-management.genre.index');
+    Route::get('/administrator/video-management/country/index',  App\Livewire\Administrator\VideoManagement\Country\Index::class)->name('administrator.video-management.country.index');
 });
 
 require_once __DIR__.'/auth.php';

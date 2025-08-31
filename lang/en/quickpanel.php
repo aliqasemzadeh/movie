@@ -153,6 +153,8 @@ return [
     'close' => 'Close',
     'functions' => 'Functions',
     'admin_panel' => 'Admin Panel',
+    'video_management' => 'Video Management',
+    'movies' => 'Movies',
 
     // General
     'added' => 'Added',
