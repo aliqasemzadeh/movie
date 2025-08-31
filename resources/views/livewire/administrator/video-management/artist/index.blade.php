@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ __('quickpanel.artists') }}
+</x-slot>
 <div>
-    {{-- Because she competes with no one, no one can compete with her. --}}
+    <livewire:administrator.video-management.artist.table/>
 </div>

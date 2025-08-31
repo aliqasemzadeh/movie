@@ -165,6 +165,20 @@ return [
         'country_deleted' => 'Country Deleted.',
         'slug' => 'Slug',
 
+        // Genre
+        'create_genre' => 'Create Genre',
+        'edit_genre' => 'Edit Genre',
+        'genre_created' => 'Genre Created.',
+        'genre_edited' => 'Genre Edited.',
+        'genre_deleted' => 'Genre Deleted.',
+
+        // Artist
+        'create_artist' => 'Create Artist',
+        'edit_artist' => 'Edit Artist',
+        'artist_created' => 'Artist Created.',
+        'artist_edited' => 'Artist Edited.',
+        'artist_deleted' => 'Artist Deleted.',
+
     // General
     'added' => 'Added',
     'not_translated' => 'Not translated',
