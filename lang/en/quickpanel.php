@@ -158,6 +158,12 @@ return [
     'artists' => 'Artists',
     'genres' => 'Genres',
     'countries' => 'Countries',
+        'create_country' => 'Create Country',
+        'edit_country' => 'Edit Country',
+        'country_created' => 'Country Created.',
+        'country_edited' => 'Country Edited.',
+        'country_deleted' => 'Country Deleted.',
+        'slug' => 'Slug',
 
     // General
     'added' => 'Added',

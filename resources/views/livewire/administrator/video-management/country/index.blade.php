@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ __('quickpanel.countries') }}
+</x-slot>
 <div>
-    {{-- Nothing in the world is as soft and yielding as water. --}}
+    <livewire:administrator.video-management.country.table/>
 </div>
