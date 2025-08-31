@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ __('quickpanel.genres') }}
+</x-slot>
 <div>
-    {{-- Success is as dangerous as failure. --}}
+    <livewire:administrator.video-management.genre.table/>
 </div>

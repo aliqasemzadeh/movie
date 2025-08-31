@@ -3,7 +3,6 @@
 namespace App\Livewire\Administrator\VideoManagement\Genre;
 
 use App\Models\ViedoSystem\Genre;
-use App\Models\ViedoSystem\Country;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;
@@ -22,7 +21,6 @@ final class Table extends PowerGridComponent
 
     public string $tableName = 'administrator.video-management.genre.table';
 
-    public ?int $countryId = null;
 
     public function header(): array
     {
@@ -30,7 +28,7 @@ final class Table extends PowerGridComponent
             Button::add('create-genre')
                 ->slot(__('quickpanel.create_genre'))
                 ->class('text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800')
-                ->dispatch('modal-open', ['component' => 'administrator.video-management.genre.create', 'props' => ['countryId' => $this->countryId]]),
+                ->dispatch('modal-open', ['component' => 'administrator.video-management.genre.create']),
         ];
     }
 
@@ -46,10 +44,7 @@ final class Table extends PowerGridComponent
 
     public function datasource(): Builder
     {
-        $query = Genre::query()->with('country');
-        if ($this->countryId) {
-            $query->where('country_id', $this->countryId);
-        }
+        $query = Genre::query();
         return $query;
     }
 
@@ -63,7 +58,6 @@ final class Table extends PowerGridComponent
         return PowerGrid::fields()
             ->add('id')
             ->add('name')
-            ->add('country_name', fn (Genre $model) => optional($model->country)->name)
             ->add('created_at_formatted', fn (Genre $model) => Carbon::parse($model->created_at)->format('d/m/Y H:i:s'));
     }
 
@@ -74,7 +68,6 @@ final class Table extends PowerGridComponent
             Column::make(__('quickpanel.name'), 'name')
                 ->sortable()
                 ->searchable(),
-            Column::make(__('quickpanel.country'), 'country_name'),
             Column::make(__('quickpanel.created_at'), 'created_at_formatted', 'created_at')
                 ->sortable(),
             Column::action(__('quickpanel.action'))
@@ -84,10 +77,6 @@ final class Table extends PowerGridComponent
     public function filters(): array
     {
         return [
-            Filter::select('country_id', __('quickpanel.country'))
-                ->dataSource(Country::query()->select('id', 'name')->get())
-                ->optionValue('id')
-                ->optionLabel('name'),
             Filter::datetimepicker('created_at'),
         ];
     }
