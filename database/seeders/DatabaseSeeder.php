@@ -15,6 +15,11 @@ class DatabaseSeeder extends Seeder
     {
         // User::factory(10)->create();
 
+        // Seed predefined countries
+        $this->call(CountrySeeder::class);
+        // Seed predefined genres
+        $this->call(GenreSeeder::class);
+
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
