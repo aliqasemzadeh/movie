@@ -10,7 +10,7 @@ class Movie extends Model
     use SoftDeletes;
 
     protected $fillable = [
-        'title', 'slug', 'description', 'image', 'IMDB', 'IMDB_link', 'trailer', 'rank', 'year', 'duration', 'director_artist_id', 'country_id'
+        'title', 'slug', 'description', 'image', 'cover', 'IMDB', 'IMDB_link', 'trailer', 'rank', 'year', 'duration', 'director_artist_id', 'country_id'
     ];
 
     public function director()

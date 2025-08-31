@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ __('quickpanel.movies') }}
+</x-slot>
 <div>
-    {{-- Be like water. --}}
+    <livewire:administrator.video-management.movie.table/>
 </div>
