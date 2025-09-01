@@ -5,6 +5,7 @@ namespace App\Models\VideoSystem;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movie extends Model
@@ -35,8 +36,8 @@ class Movie extends Model
         return $this->belongsToMany(Genre::class, 'movie_genres');
     }
 
-    public function seasons(): belongsToMany
+    public function seasons(): HasMany
     {
-        return $this->belongsToMany(MovieSeason::class, 'movie_seasons');
+        return $this->hasMany(MovieSeason::class);
     }
 }

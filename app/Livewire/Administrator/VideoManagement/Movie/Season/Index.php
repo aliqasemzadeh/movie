@@ -10,21 +10,40 @@ use Masmerise\Toaster\Toaster;
 class Index extends Component
 {
     public $movie;
+    public $search = '';
+
+    protected $listeners = [
+        'season-created' => 'refreshList',
+        'season-updated' => 'refreshList',
+    ];
 
     public function mount($movieId)
     {
         $this->movie = Movie::findOrFail($movieId);
     }
 
-    public function delete($movieId)
+    public function refreshList(): void
     {
-        $this->movie->seasons()->where('id', $movieId)->delete();
+        // No-op; Livewire will re-render automatically
+    }
+
+    public function delete($seasonId)
+    {
+        $this->movie->seasons()->where('id', $seasonId)->delete();
         Toaster::success(__('quickpanel.season_deleted'));
+        $this->dispatch('season-deleted');
     }
 
     #[Layout('layouts.administrator')]
     public function render()
     {
-        return view('livewire.administrator.video-management.movie.season.index');
+        $seasons = $this->movie->seasons()
+            ->when($this->search, fn($q) => $q->where('title', 'like', "%{$this->search}%"))
+            ->orderBy('sort_order')
+            ->orderBy('number')
+            ->orderBy('title')
+            ->get();
+
+        return view('livewire.administrator.video-management.movie.season.index', compact('seasons'));
     }
 }

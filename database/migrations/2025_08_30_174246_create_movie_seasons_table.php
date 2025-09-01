@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('movie_seasons', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('movie_id')->constrained('movies')->cascadeOnDelete();
             $table->string('title');
             $table->string('number');
             $table->string('sort_order');
