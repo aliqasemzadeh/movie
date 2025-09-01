@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/administrator/video-management/genre/index',  App\Livewire\Administrator\VideoManagement\Genre\Index::class)->name('administrator.video-management.genre.index');
     Route::get('/administrator/video-management/country/index',  App\Livewire\Administrator\VideoManagement\Country\Index::class)->name('administrator.video-management.country.index');
     Route::get('/administrator/video-management/movie/season/{movieId}',  App\Livewire\Administrator\VideoManagement\Movie\Season\Index::class)->name('administrator.video-management.movie.season.index');
-    Route::get('/administrator/video-management/movie/file/{movieId}',  App\Livewire\Administrator\VideoManagement\Movie\Season\Index::class)->name('administrator.video-management.movie.file.index');
+    Route::get('/administrator/video-management/movie/file/{movieId}',  App\Livewire\Administrator\VideoManagement\Movie\File\Index::class)->name('administrator.video-management.movie.file.index');
 });
 
 require_once __DIR__.'/auth.php';

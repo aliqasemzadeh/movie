@@ -40,4 +40,9 @@ class Movie extends Model
     {
         return $this->hasMany(MovieSeason::class);
     }
+
+    public function files(): HasMany
+    {
+        return $this->hasMany(MovieFile::class);
+    }
 }

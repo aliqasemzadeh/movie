@@ -273,4 +273,16 @@ return [
     'file_created' => 'File Created.',
     'file_edited' => 'File Edited.',
     'file_deleted' => 'File Deleted.',
+
+    // Movie File Fields
+    'file_name' => 'File Name',
+    'file_path' => 'Path',
+    'file_image' => 'Image',
+    'file_quality' => 'Quality',
+    'file_code' => 'Code',
+    'select_season' => 'Select a season',
+    'no_season' => 'No season',
+    'add_season' => 'Add season',
+    'image_must_be_jpg' => 'Image must be a JPG file.',
+    'quality_other' => 'Other',
 ];
