@@ -12,6 +12,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Create extends Component
 {
@@ -26,12 +28,12 @@ class Create extends Component
     #[Validate('nullable|string')]
     public ?string $description = null;
 
-    // jpg with 3:2 ratio
-    #[Validate('required|image|mimes:jpg,jpeg|dimensions:ratio=3/2|max:4096')]
+    // jpg only; we'll enforce ratio and size via Intervention/Image
+    #[Validate('required|mimes:jpg,jpeg|max:4096')]
     public $image;
 
-    // jpg with 2:1 ratio
-    #[Validate('required|image|mimes:jpg,jpeg|dimensions:ratio=2/1|max:6144')]
+    // jpg only; we'll enforce ratio and size via Intervention/Image
+    #[Validate('required|mimes:jpg,jpeg|max:6144')]
     public $cover;
 
     #[Validate('nullable|string')]
@@ -68,10 +70,23 @@ class Create extends Component
 
     public function create(): void
     {
-        $this->validate();
+        $this->validate($this->rules());
 
-        $imagePath = $this->image->store('movies/images', 'public');
-        $coverPath = $this->cover->store('movies/covers', 'public');
+        $manager = new ImageManager(new Driver());
+
+        $processedImage = $manager->read($this->image->getRealPath())
+            ->cover(1200, 800) // enforce 3:2 ratio
+            ->toJpg(85);
+        $imageFilename = 'movies/images/' . uniqid('img_') . '.jpg';
+        Storage::disk('public')->put($imageFilename, (string) $processedImage);
+        $imagePath = $imageFilename;
+
+        $processedCover = $manager->read($this->cover->getRealPath())
+            ->cover(1200, 600) // enforce 2:1 ratio
+            ->toJpg(85);
+        $coverFilename = 'movies/covers/' . uniqid('cov_') . '.jpg';
+        Storage::disk('public')->put($coverFilename, (string) $processedCover);
+        $coverPath = $coverFilename;
 
         $movie = Movie::create([
             'title' => $this->title,
@@ -90,10 +105,12 @@ class Create extends Component
         ]);
 
         if (!empty($this->artist_ids)) {
-            $movie->artists()->sync($this->artist_ids);
+            $validArtistIds = Artist::whereIn('id', $this->artist_ids)->pluck('id')->all();
+            $movie->artists()->sync($validArtistIds);
         }
         if (!empty($this->genre_ids)) {
-            $movie->genres()->sync($this->genre_ids);
+            $validGenreIds = Genre::whereIn('id', $this->genre_ids)->pluck('id')->all();
+            $movie->genres()->sync($validGenreIds);
         }
 
         Toaster::success(__('quickpanel.movie_created'));
@@ -103,6 +120,16 @@ class Create extends Component
         $this->reset([
             'title','slug','description','image','cover','IMDB','IMDB_link','trailer','rank','year','duration','director_artist_id','country_id','artist_ids','genre_ids'
         ]);
+    }
+
+    protected function rules(): array
+    {
+        return [
+            'artist_ids' => ['array'],
+            'artist_ids.*' => ['integer','exists:artists,id'],
+            'genre_ids' => ['array'],
+            'genre_ids.*' => ['integer','exists:genres,id'],
+        ];
     }
 
     public function render()

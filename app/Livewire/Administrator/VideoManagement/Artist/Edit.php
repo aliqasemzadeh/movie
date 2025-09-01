@@ -8,6 +8,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Edit extends Component
 {
@@ -24,7 +26,7 @@ class Edit extends Component
     #[Validate('nullable|string')]
     public ?string $description = null;
 
-    #[Validate('nullable|image|mimes:jpg,jpeg|dimensions:width=1024,height=1024|max:2048')]
+    #[Validate('nullable|mimes:jpg,jpeg|max:2048')]
     public $image;
 
     public string $currentImage = '';
@@ -45,7 +47,7 @@ class Edit extends Component
             'name' => 'required|string|min:2|unique:artists,name,' . $this->artistId,
             'slug' => 'required|string|alpha_dash|unique:artists,slug,' . $this->artistId,
             'description' => 'nullable|string',
-            'image' => 'nullable|image|mimes:jpg,jpeg|dimensions:width=1024,height=1024|max:2048',
+            'image' => 'nullable|mimes:jpg,jpeg|max:2048',
         ]);
 
         $artist = Artist::findOrFail($this->artistId);
@@ -55,7 +57,12 @@ class Edit extends Component
 
         $oldPath = $artist->image;
         if ($this->image) {
-            $newPath = $this->image->store('artists', 'public');
+            $manager = new ImageManager(new Driver());
+            $encoded = $manager->read($this->image->getRealPath())
+                ->scaleDown(1024, 1024)
+                ->toJpg(85);
+            $newPath = 'artists/' . uniqid('artist_') . '.jpg';
+            Storage::disk('public')->put($newPath, (string) $encoded);
             $artist->image = $newPath;
         }
 

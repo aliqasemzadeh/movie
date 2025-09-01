@@ -12,6 +12,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Edit extends Component
 {
@@ -29,10 +31,10 @@ class Edit extends Component
     public ?string $description = null;
 
     // Optional new uploads
-    #[Validate('nullable|image|mimes:jpg,jpeg|dimensions:ratio=3/2|max:4096')]
+    #[Validate('nullable|mimes:jpg,jpeg|max:4096')]
     public $image;
 
-    #[Validate('nullable|image|mimes:jpg,jpeg|dimensions:ratio=2/1|max:6144')]
+    #[Validate('nullable|mimes:jpg,jpeg|max:6144')]
     public $cover;
 
     #[Validate('nullable|string')]
@@ -99,13 +101,22 @@ class Edit extends Component
         $imagePath = $movie->image;
         $coverPath = $movie->cover;
         if ($this->image) {
-            $imagePath = $this->image->store('movies/images', 'public');
+            $manager = new ImageManager(new Driver());
+            $processedImage = $manager->read($this->image->getRealPath())
+                ->cover(1200, 800)
+                ->toJpg(85);
+            $imagePath = 'movies/images/' . uniqid('img_') . '.jpg';
+            Storage::disk('public')->put($imagePath, (string) $processedImage);
             if ($movie->image && Storage::disk('public')->exists($movie->image)) {
                 Storage::disk('public')->delete($movie->image);
             }
         }
         if ($this->cover) {
-            $coverPath = $this->cover->store('movies/covers', 'public');
+            $processedCover = $manager->read($this->cover->getRealPath())
+                ->cover(1200, 600)
+                ->toJpg(85);
+            $coverPath = 'movies/covers/' . uniqid('cov_') . '.jpg';
+            Storage::disk('public')->put($coverPath, (string) $processedCover);
             if ($movie->cover && Storage::disk('public')->exists($movie->cover)) {
                 Storage::disk('public')->delete($movie->cover);
             }
@@ -127,8 +138,10 @@ class Edit extends Component
             'country_id' => $this->country_id,
         ]);
 
-        $movie->artists()->sync($this->artist_ids);
-        $movie->genres()->sync($this->genre_ids);
+        $validArtistIds = Artist::whereIn('id', $this->artist_ids)->pluck('id')->all();
+        $movie->artists()->sync($validArtistIds);
+        $validGenreIds = Genre::whereIn('id', $this->genre_ids)->pluck('id')->all();
+        $movie->genres()->sync($validGenreIds);
 
         Toaster::success(__('quickpanel.movie_edited'));
         $this->dispatch('pg:eventRefresh-administrator.video-management.movie.table');
@@ -141,8 +154,8 @@ class Edit extends Component
             'title' => ['required','string','min:2', Rule::unique('movies','title')->ignore($this->movieId)],
             'slug' => ['required','string','alpha_dash', Rule::unique('movies','slug')->ignore($this->movieId)],
             'description' => ['nullable','string'],
-            'image' => ['nullable','image','mimes:jpg,jpeg','dimensions:ratio=3/2','max:4096'],
-            'cover' => ['nullable','image','mimes:jpg,jpeg','dimensions:ratio=2/1','max:6144'],
+            'image' => ['nullable','mimes:jpg,jpeg','max:4096'],
+            'cover' => ['nullable','mimes:jpg,jpeg','max:6144'],
             'IMDB' => ['nullable','string'],
             'IMDB_link' => ['nullable','url'],
             'trailer' => ['nullable','url'],
@@ -152,7 +165,9 @@ class Edit extends Component
             'director_artist_id' => ['required','exists:artists,id'],
             'country_id' => ['required','exists:countries,id'],
             'artist_ids' => ['array'],
+            'artist_ids.*' => ['integer','exists:artists,id'],
             'genre_ids' => ['array'],
+            'genre_ids.*' => ['integer','exists:genres,id'],
         ];
     }
 

@@ -8,6 +8,8 @@ use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Masmerise\Toaster\Toaster;
+use Intervention\Image\ImageManager;
+use Intervention\Image\Drivers\Gd\Driver;
 
 class Create extends Component
 {
@@ -24,7 +26,7 @@ class Create extends Component
     #[Validate('nullable|string')]
     public ?string $description = null;
 
-    #[Validate('required|image|mimes:jpg,jpeg|dimensions:width=1024,height=1024|max:2048')]
+    #[Validate('required|mimes:jpg,jpeg|max:2048')]
     public $image;
 
     public function mount(?int $artistId = null): void
@@ -36,7 +38,13 @@ class Create extends Component
     {
         $this->validate();
 
-        $path = $this->image->store('artists', 'public');
+        $manager = new ImageManager(new Driver());
+        $image = $manager->read($this->image->getRealPath())
+            ->scaleDown(1024, 1024)
+            ->toJpg(85);
+        $filename = 'artists/' . uniqid('artist_') . '.jpg';
+        Storage::disk('public')->put($filename, (string) $image);
+        $path = $filename;
 
         Artist::create([
             'name' => $this->name,
