@@ -94,7 +94,7 @@
                 </td>
                 <td class="px-6 py-4 flex gap-3">
                     <button x-on:click="$dispatch('modal-open', { component: 'administrator.video-management.movie.season.edit', props: { movieId: '{{ $movie->id }}', seasonId: '{{ $season->id }}' } })" class="font-medium text-blue-600 dark:text-blue-500 hover:underline">{{ __('quickpanel.edit') }}</button>
-                    <button wire:click="delete({{ $season->id }})" class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('quickpanel.delete') }}</button>
+                    <button x-on:click="if (confirm('{{ __('quickpanel.are_you_sure') }}')) { $wire.delete({{ $season->id }}); }" class="font-medium text-red-600 dark:text-red-500 hover:underline">{{ __('quickpanel.delete') }}</button>
                 </td>
             </tr>
             @empty
