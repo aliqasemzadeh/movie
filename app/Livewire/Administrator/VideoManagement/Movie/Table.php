@@ -110,6 +110,19 @@ final class Table extends PowerGridComponent
     public function actions(Movie $row): array
     {
         return [
+
+            Button::add('seasons')
+                ->slot(__('quickpanel.seasons'))
+                ->id()
+                ->class('px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800')
+                ->route('administrator.video-management.movie.seasons', ['movieId' => $row->id]),
+
+            Button::add('files')
+                ->slot(__('quickpanel.files'))
+                ->id()
+                ->class('px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800')
+                ->route('administrator.video-management.movie.files', ['movieId' => $row->id]),
+
             Button::add('edit')
                 ->slot(__('quickpanel.edit'))
                 ->id()
