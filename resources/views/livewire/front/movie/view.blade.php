@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ $movie->title }}
+</x-slot>
 <div>
     @if($movie)
         <div class="space-y-6">
