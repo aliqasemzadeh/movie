@@ -115,13 +115,13 @@ final class Table extends PowerGridComponent
                 ->slot(__('quickpanel.seasons'))
                 ->id()
                 ->class('px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-indigo-700 rounded-lg hover:bg-indigo-800 focus:ring-4 focus:outline-none focus:ring-indigo-300 dark:bg-indigo-600 dark:hover:bg-indigo-700 dark:focus:ring-indigo-800')
-                ->route('administrator.video-management.movie.seasons', ['movieId' => $row->id]),
+                ->route('administrator.video-management.movie.season.index', ['movieId' => $row->id]),
 
             Button::add('files')
                 ->slot(__('quickpanel.files'))
                 ->id()
                 ->class('px-3 py-2 text-xs font-medium text-center inline-flex items-center text-white bg-pink-700 rounded-lg hover:bg-pink-800 focus:ring-4 focus:outline-none focus:pink-blue-300 dark:bg-pink-600 dark:hover:bg-pink-700 dark:focus:ring-pink-800')
-                ->route('administrator.video-management.movie.files', ['movieId' => $row->id]),
+                ->route('administrator.video-management.movie.file.index', ['movieId' => $row->id]),
 
             Button::add('edit')
                 ->slot(__('quickpanel.edit'))
