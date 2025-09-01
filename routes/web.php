@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', App\Livewire\Front\Home\Index::class)->name('home');
 Route::get('/movie/index', App\Livewire\Front\Movie\Index::class)->name('front.movie.index');
 Route::get('/movie/view/{movieId}/{slug?}', App\Livewire\Front\Movie\View::class)->name('front.movie.view');
+Route::get('/movie/genre/{slug}', App\Livewire\Front\Movie\Genre::class)->name('front.movie.genre');
+Route::get('/movie/country/{slug}', App\Livewire\Front\Movie\Country::class)->name('front.movie.country');
 
 Route::middleware('auth')->group(function () {
     Route::get('/user/dashboard/index', App\Livewire\User\Dashboard\Index::class)->name('user.dashboard.index');
