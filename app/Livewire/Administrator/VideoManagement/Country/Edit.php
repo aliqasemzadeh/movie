@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Country;
 
-use App\Models\ViedoSystem\Country;
+use App\Models\VideoSystem\Country;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;

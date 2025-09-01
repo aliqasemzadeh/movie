@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\ViedoSystem\Country;
+use App\Models\VideoSystem\Country;
 
 class CountrySeeder extends Seeder
 {

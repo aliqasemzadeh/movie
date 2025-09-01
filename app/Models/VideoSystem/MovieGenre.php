@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Models\ViedoSystem;
+namespace App\Models\VideoSystem;
 
 use Illuminate\Database\Eloquent\Model;
 
-class MovieArtist extends Model
+class MovieGenre extends Model
 {
     protected $fillable = [
-        'movie_id', 'artist_id'
+        'movie_id', 'genre_id'
     ];
 
     public function movie()
@@ -15,8 +15,8 @@ class MovieArtist extends Model
         return $this->belongsTo(Movie::class);
     }
 
-    public function artist()
+    public function genre()
     {
-        return $this->belongsTo(Artist::class);
+        return $this->belongsTo(Genre::class);
     }
 }

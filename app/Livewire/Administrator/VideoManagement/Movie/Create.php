@@ -2,10 +2,10 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Movie;
 
-use App\Models\ViedoSystem\Movie;
-use App\Models\ViedoSystem\Artist;
-use App\Models\ViedoSystem\Country;
-use App\Models\ViedoSystem\Genre;
+use App\Models\VideoSystem\Movie;
+use App\Models\VideoSystem\Artist;
+use App\Models\VideoSystem\Country;
+use App\Models\VideoSystem\Genre;
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;

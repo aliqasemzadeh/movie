@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Movie;
 
-use App\Models\ViedoSystem\Movie;
+use App\Models\VideoSystem\Movie;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;

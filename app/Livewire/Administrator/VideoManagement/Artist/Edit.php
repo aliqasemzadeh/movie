@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Artist;
 
-use App\Models\ViedoSystem\Artist;
+use App\Models\VideoSystem\Artist;
 use Illuminate\Support\Facades\Storage;
 use Livewire\Attributes\Validate;
 use Livewire\Component;

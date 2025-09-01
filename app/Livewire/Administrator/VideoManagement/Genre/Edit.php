@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Genre;
 
-use App\Models\ViedoSystem\Genre;
+use App\Models\VideoSystem\Genre;
 use Livewire\Attributes\Validate;
 use Livewire\Component;
 use Masmerise\Toaster\Toaster;

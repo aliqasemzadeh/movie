@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Country;
 
-use App\Models\ViedoSystem\Country;
+use App\Models\VideoSystem\Country;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;

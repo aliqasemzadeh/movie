@@ -2,7 +2,7 @@
 
 namespace App\Livewire\Administrator\VideoManagement\Genre;
 
-use App\Models\ViedoSystem\Genre;
+use App\Models\VideoSystem\Genre;
 use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Livewire\Attributes\On;

@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Models\ViedoSystem;
+namespace App\Models\VideoSystem;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class Genre extends Model
+class Country extends Model
 {
     use SoftDeletes;
 

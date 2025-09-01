@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
-use App\Models\ViedoSystem\Genre;
+use App\Models\VideoSystem\Genre;
 
 class GenreSeeder extends Seeder
 {

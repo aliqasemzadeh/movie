@@ -1,8 +1,10 @@
 <?php
 
-namespace App\Models\ViedoSystem;
+namespace App\Models\VideoSystem;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Movie extends Model
@@ -13,23 +15,28 @@ class Movie extends Model
         'title', 'slug', 'description', 'image', 'cover', 'IMDB', 'IMDB_link', 'trailer', 'rank', 'year', 'duration', 'director_artist_id', 'country_id'
     ];
 
-    public function director()
+    public function director(): belongsTo
     {
         return $this->belongsTo(Artist::class, 'director_artist_id');
     }
 
-    public function country()
+    public function country():belongsTo
     {
         return $this->belongsTo(Country::class);
     }
 
-    public function artists()
+    public function artists(): belongsToMany
     {
         return $this->belongsToMany(Artist::class, 'movie_artists');
     }
 
-    public function genres()
+    public function genres(): belongsToMany
     {
         return $this->belongsToMany(Genre::class, 'movie_genres');
+    }
+
+    public function seasons(): belongsToMany
+    {
+        return $this->belongsToMany(MovieSeason::class, 'movie_seasons');
     }
 }
