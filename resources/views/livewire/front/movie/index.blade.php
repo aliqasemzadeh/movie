@@ -1,3 +1,6 @@
+<x-slot name="title">
+    {{ __('quickpanel.movies') }}
+</x-slot>
 <div>
     <div class="mb-4 flex items-center justify-between">
         <h1 class="text-xl font-semibold text-gray-900 dark:text-white">{{ __('quickpanel.movies') }}</h1>
