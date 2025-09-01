@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('movie_genres', function (Blueprint $table) {
-            $table->id();
             $table->foreignId('movie_id')->constrained('movies')->cascadeOnDelete();
             $table->foreignId('genre_id')->constrained('genres')->cascadeOnDelete();
+            $table->primary(['movie_id', 'genre_id']);
             $table->timestamps();
         });
     }

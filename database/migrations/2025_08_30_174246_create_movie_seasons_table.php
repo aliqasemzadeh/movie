@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('number');
+            $table->string('sort_order');
             $table->string('slug')->unique()->index();
             $table->text('description')->nullable();
             $table->string('image')->nullable();

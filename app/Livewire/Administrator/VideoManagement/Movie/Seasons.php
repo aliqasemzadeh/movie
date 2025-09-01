@@ -16,6 +16,6 @@ class Seasons extends Component
     public function render()
     {
         $seasons = $this->movie->seasons;
-        return view('livewire.administrator.video-management.movie.seasons');
+        return view('livewire.administrator.video-management.movie.seasons', compact('seasons'));
     }
 }
