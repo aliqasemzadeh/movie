@@ -1,5 +1,5 @@
 <x-slot name="title">
-    {{ __('quickpanel.files') }}: {{ $movie->title }}
+    {{ __('quickpanel.seasons') }}: {{ $movie->title }}
 </x-slot>
 <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
     <div class="pb-4 bg-white dark:bg-gray-900">
