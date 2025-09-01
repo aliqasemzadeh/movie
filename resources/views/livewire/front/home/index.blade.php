@@ -5,7 +5,7 @@
     <div class="max-w-2xl mx-auto text-center space-y-6">
         <!-- Logo on top (center) -->
         <div class="flex justify-center" x-show="!$wire.results || $wire.results.length === 0">
-            @includeIf('layouts.global.logo', ['class' => 'h-32 w-32'])
+            @includeIf('layouts.global.logo', ['class' => 'h-64 w-64'])
         </div>
 
         <!-- Search form (submit triggers search) -->
