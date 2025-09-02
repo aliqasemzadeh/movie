@@ -24,8 +24,9 @@ return new class extends Migration
             $table->string('rank')->default(0);
             $table->string('year')->default(0);
             $table->bigInteger('duration')->default(0);
-            $table->foreignId('director_artist_id')->constrained('artists');
-            $table->foreignId('country_id')->constrained('countries');
+            // Create the FK columns now; add constraints in a later migration to ensure referenced tables exist
+            $table->foreignId('director_artist_id');
+            $table->foreignId('country_id');
             $table->timestamps();
             $table->softDeletes();
         });
