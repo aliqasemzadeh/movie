@@ -3,12 +3,14 @@
 namespace App\Livewire\Front\Movie;
 
 use App\Models\VideoSystem\Country as CountryModel;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Countries extends Component
 {
     public string $search = '';
 
+    #[Computed]
     public function getItemsProperty()
     {
         return CountryModel::query()
