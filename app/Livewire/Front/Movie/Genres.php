@@ -3,12 +3,14 @@
 namespace App\Livewire\Front\Movie;
 
 use App\Models\VideoSystem\Genre as GenreModel;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
 
 class Genres extends Component
 {
     public string $search = '';
 
+    #[Computed]
     public function getItemsProperty()
     {
         return GenreModel::query()
