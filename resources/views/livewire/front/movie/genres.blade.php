@@ -2,7 +2,7 @@
     <x-livewire-modal::modal position="center" class="w-full max-w-md overflow-auto rounded-lg bg-white dark:bg-gray-900 dark:text-gray-100 p-5">
         <div class="space-y-4">
             <h2 class="text-lg font-semibold">{{ __('quickpanel.genres') }}</h2>
-            <input type="search" placeholder="{{ __('Search genres...') }}" wire:model.debounce.300ms="search"
+            <input type="search" placeholder="{{ __('Search genres...') }}" wire:model.live="search"
                    class="w-full rounded border border-gray-300 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white dark:placeholder-gray-400"/>
 
             <ul class="divide-y divide-gray-200 dark:divide-gray-700">
