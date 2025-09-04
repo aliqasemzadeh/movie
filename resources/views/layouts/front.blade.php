@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $title ?? "" }} - {{ config('app.name', 'QuickPanel') }}</title>
 
+    {{-- SEO Meta Tags --}}
+    @stack('meta')
+
     @vite('resources/css/app.css')
     @livewireStyles
 </head>
@@ -98,6 +101,9 @@
     </div>
 </footer>
 @vite('resources/js/app.js')
+
+{{-- Additional Scripts --}}
+@stack('scripts')
 <x-toaster-hub />
 <livewire:modal />
 @livewireScripts

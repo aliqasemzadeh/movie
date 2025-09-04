@@ -31,6 +31,56 @@ class View extends Component
         })->sortKeys();
     }
 
+    /**
+     * Get SEO meta tags
+     */
+    public function getMetaTagsProperty(): array
+    {
+        if (!$this->movie) {
+            return [];
+        }
+
+        return [
+            'title' => $this->movie->title,
+            'description' => $this->movie->meta_description,
+            'keywords' => $this->movie->meta_keywords,
+            'canonical' => $this->movie->canonical_url,
+            'open_graph' => $this->movie->open_graph_data,
+            'structured_data' => $this->movie->structured_data,
+        ];
+    }
+
+    /**
+     * Get breadcrumb data
+     */
+    public function getBreadcrumbsProperty(): array
+    {
+        if (!$this->movie) {
+            return [];
+        }
+
+        $breadcrumbs = [
+            ['title' => __('Home'), 'url' => route('home')],
+            ['title' => __('Movies'), 'url' => route('front.movie.index')],
+        ];
+
+        if ($this->movie->genres && $this->movie->genres->count()) {
+            $firstGenre = $this->movie->genres->first();
+            $breadcrumbs[] = [
+                'title' => $firstGenre->title,
+                'url' => route('front.movie.genre', ['slug' => $firstGenre->slug ?? $firstGenre->id])
+            ];
+        }
+
+        $breadcrumbs[] = [
+            'title' => $this->movie->title,
+            'url' => $this->movie->canonical_url,
+            'current' => true
+        ];
+
+        return $breadcrumbs;
+    }
+
     #[Layout('layouts.front')]
     public function render()
     {

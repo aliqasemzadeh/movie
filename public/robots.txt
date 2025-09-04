@@ -1,2 +1,21 @@
 User-agent: *
-Disallow:
+Allow: /
+
+# Sitemap
+Sitemap: {{ url('/sitemap.xml') }}
+
+# Disallow admin areas
+Disallow: /administrator/
+Disallow: /user/
+Disallow: /storage/
+Disallow: /vendor/
+
+# Allow important pages
+Allow: /
+Allow: /movie/
+Allow: /search
+Allow: /genre/
+Allow: /country/
+
+# Crawl delay (optional)
+Crawl-delay: 1
