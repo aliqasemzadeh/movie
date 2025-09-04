@@ -27,11 +27,11 @@
 </header>
 
 <!-- Main -->
-<main>
+<main class="flex-1">
     <section class="bg-gray-50 dark:bg-gray-900">
-        <div class="mx-auto grid h-screen max-w-screen-xl  px-4 py-2.5">
+        <div class="mx-auto grid min-h-screen max-w-screen-xl px-4 py-2.5">
             <div class="w-full place-self-center">
-                <div class="mx-auto rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6">
+                <div class="mx-auto rounded-lg bg-white p-4 shadow-sm dark:bg-gray-800 sm:p-6 mb-20">
                     {{ $slot }}
                 </div>
             </div>
@@ -64,7 +64,7 @@
 </div>
 
 <!-- Footer -->
-<footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800">
+<footer class="p-4 bg-white md:p-8 lg:p-10 dark:bg-gray-800 mt-20">
     <div class="mx-auto max-w-screen-xl text-center">
         <a href="{{ route('home') }}" class="flex justify-center items-center text-2xl font-semibold text-gray-900 dark:text-white">
                 @include('layouts.global.logo', ['class' => 'mr-2 h-8', 'width' => '33px', 'height' => '33px'])
